@@ -1,0 +1,73 @@
+{
+  "name": "FarmGuard Rain Alert",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "schedule",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [240, 200]
+    },
+    {
+      "parameters": {
+        "url": "http://backend:8000/weather/Pune",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Authorization", "value": "Bearer YOUR_JWT_TOKEN" }
+          ]
+        }
+      },
+      "id": "check-weather",
+      "name": "Check Weather",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [500, 200]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{$json[\"rainfall_probability\"]}}",
+              "operation": "largerEqual",
+              "value2": 60
+            }
+          ]
+        }
+      },
+      "id": "high-rain",
+      "name": "High Rain?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [760, 200]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.relay.app/webhooks/farmguard",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{ \"event\": \"rain_alert\", \"message\": \"Heavy rain expected. Delay irrigation.\" }"
+      },
+      "id": "send-alert",
+      "name": "Send Alert",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [1020, 120]
+    }
+  ],
+  "connections": {
+    "Schedule Trigger": {
+      "main": [[{ "node": "Check Weather", "type": "main", "index": 0 }]]
+    },
+    "Check Weather": {
+      "main": [[{ "node": "High Rain?", "type": "main", "index": 0 }]]
+    },
+    "High Rain?": {
+      "main": [[{ "node": "Send Alert", "type": "main", "index": 0 }], []]
+    }
+  }
+}
+

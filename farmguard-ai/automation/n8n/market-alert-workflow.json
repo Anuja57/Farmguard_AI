@@ -1,0 +1,10 @@
+{
+  "name": "FarmGuard Market Alert",
+  "description": "Notifies farmers when tracked crop prices rise above threshold.",
+  "steps": [
+    "Schedule trigger fetches mandi prices",
+    "Compare against user threshold",
+    "Send price rise alert via webhook",
+    "Log notification delivery"
+  ]
+}

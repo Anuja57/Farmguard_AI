@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Fraunces:wght@600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color: #1d2d1f;
+  background:
+    radial-gradient(circle at top left, rgba(147, 194, 131, 0.18), transparent 32%),
+    linear-gradient(180deg, #f8fbf4 0%, #fbf7ef 100%);
+  font-family: "Outfit", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.35) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.35) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+.glass-panel {
+  @apply border border-white/60 bg-white/80 backdrop-blur-xl;
+}
+

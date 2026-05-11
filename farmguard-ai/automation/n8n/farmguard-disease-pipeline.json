@@ -1,0 +1,15 @@
+{
+  "name": "FarmGuard Disease Intake Pipeline",
+  "description": "End-to-end farmer disease workflow for app uploads and Google Form submissions.",
+  "steps": [
+    "Webhook or Google Sheets trigger receives farmer submission",
+    "Read farmer identity from login-linked email or phone",
+    "Call FarmGuard /detect-disease or /ask-ai backend endpoint",
+    "Classify urgency level based on disease and confidence",
+    "Append local helpline and KVK contact details",
+    "Send advisory by email",
+    "Send advisory by SMS or WhatsApp",
+    "Log notification event",
+    "Schedule follow-up after 24-48 hours"
+  ]
+}

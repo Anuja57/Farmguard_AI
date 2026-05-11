@@ -1,0 +1,11 @@
+{
+  "name": "FarmGuard Disease Follow-up",
+  "description": "Sends reminder after a disease detection event.",
+  "steps": [
+    "Webhook receives disease detection payload",
+    "Wait 24 hours",
+    "Send WhatsApp or SMS treatment reminder",
+    "Mark reminder as delivered"
+  ]
+}
+
