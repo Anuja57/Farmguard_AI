@@ -98,4 +98,6 @@ Import the JSON files in [`automation/n8n`](C:\Users\Lenovo\Documents\New projec
 ## Notes
 
 - Disease detection uses mock inference with realistic output so you can demo immediately.
-- Weather and market m
+- Weather and market modules gracefully fall back to demo data when keys are not configured.
+- LangGraph orchestration is implemented in a way that can be upgraded to live tools without changing API contracts.
+
